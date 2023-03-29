@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
+from .views import index, BookingView, MenuView
 
 urlpatterns = [
-    path("", views.index, name="index")
+    path("", index, name="index"),
+    path("booking/", BookingView.as_view()),
+    path("menu/", MenuView.as_view()),
 ]
