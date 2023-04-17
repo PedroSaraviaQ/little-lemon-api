@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 from .models import Booking, Menu
 from .serializers import BookingSerializer, MenuSerializer
 
@@ -11,6 +13,7 @@ def index(request):
     return render(request, "index.html", {})
 
 
+@permission_classes([IsAuthenticated])
 class BookingView(APIView):
     def get(self, request):
         items = Booking.objects.all()
